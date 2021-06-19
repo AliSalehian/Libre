@@ -1,4 +1,4 @@
-<? include("login.php");?>
+<?php include("login.php");?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,8 +10,9 @@
     <title>Document</title>
 </head>
 <body>
-    <? echo $errorS;
-       echo "<br>";
+    <?php
+        echo $errorS;
+        echo "<br>";
     ?>
     <form method="post">
         <label for="fullName">Full Name</label>

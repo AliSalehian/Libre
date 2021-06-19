@@ -2,6 +2,8 @@
 session_start();
 include ("connection.php");
 include("NotLoggedIn.php");
+include ("AdminCheck.php");
+
 include("add.php");
 include("edit.php");
 
@@ -9,7 +11,8 @@ if(!isset($_GET['option'])) $option = 10;
 else $option = $_GET['option'];
 
 $resultPerPage = $option;
-$query = "SELECT * FROM Category";
+$query = "SELECT * 
+          FROM Category";
 $result = mysqli_query($conn, $query);
 $numberOfResults = mysqli_num_rows($result);
 
@@ -31,7 +34,7 @@ $rows = $this_page_first_result;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width , initial-scale=1.0">
-    <title>Admin-Category</title>
+    <title>Admin-Issue Books</title>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="style.css" type="text/css" />
@@ -90,7 +93,7 @@ $rows = $this_page_first_result;
         <li class="floatLeft selected"><a href="category.php?page=1">Categories</a></li>
         <li class="floatLeft"><a href="author.php?page=1">Authors</a></li>
         <li class="floatLeft"><a href="book.php?page=1">Books</a></li>
-        <li class="floatLeft"><a href="">Issue Books</a></li>
+        <li class="floatLeft"><a href="IssueBooks.php">Issue Books</a></li>
         <li class="floatLeft"><a href="student.php?page=1">Students</a></li>
         <li class="floatLeft"><a href="">Profile</a></li>
         <li class="floatLeft" id="button"><a href="index.php?logout=1">Logout</a></li>
@@ -106,7 +109,7 @@ $rows = $this_page_first_result;
         </form>
     </div>
     <div class="clear"></div>
-    <!--<? echo $_SESSION['id']; ?> -->
+    <!--<?php echo $_SESSION['id']; ?> -->
     <form class="rowNums">
         <select id="records" class="options" name="rows">
             <option value="0">Select</option>
@@ -123,10 +126,10 @@ $rows = $this_page_first_result;
             <p class="float-left addBtn">Add</p>
         </div>
         <i class="fas fa-chevron-left float-left leftrightIcon"></i>
-        <?
-        for($page = 1; $page <= $numberOfPages; $page++){
-            echo "<p class='numPage'><a href='category.php?page=".$page."'>".$page."</a></p>";
-        }
+        <?php
+            for($page = 1; $page <= $numberOfPages; $page++){
+                echo "<p class='numPage'><a href='category.php?page=".$page."'>".$page."</a></p>";
+            }
         ?>
         <i class="fas fa-chevron-right float-left leftrightIcon"></i>
     </div>
@@ -142,15 +145,15 @@ $rows = $this_page_first_result;
             </tr>
             <?php
 
-            while($row = mysqli_fetch_array($result)){
-                echo "<td>".++$rows."</td>";
-                echo "<td>".$row['CategoryName']."</td>";
-                if($row['Status'] == 1) echo "<td><a class='active'>Active</td>";
-                else if ($row['Status'] == 0) echo "<td><a class='inactive'>Inactive</td>";
-                echo "<td>".$row['Reg Date']."</td>";
-                echo "<td><a id='".$row['id']."' class='edit CategoryPage'>Edit</a></td>";
-                echo "</tr>";
-            }
+                while($row = mysqli_fetch_array($result)){
+                    echo "<td>".++$rows."</td>";
+                    echo "<td>".$row['CategoryName']."</td>";
+                    if($row['Status'] == 1) echo "<td><a class='active'>Active</td>";
+                    else if ($row['Status'] == 0) echo "<td><a class='inactive'>Inactive</td>";
+                    echo "<td>".$row['Reg Date']."</td>";
+                    echo "<td><a id='".$row['id']."' class='edit CategoryPage'>Edit</a></td>";
+                    echo "</tr>";
+                }
             ?>
 
 

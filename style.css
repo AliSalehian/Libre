@@ -281,6 +281,24 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 5px;
     color: #0e3d6c;
 }
+.sampleEmail{
+    cursor: pointer;
+    background-color: #0077FA;
+    width: 90%;
+    border: none;
+    padding: 15px 10px;
+    box-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+    border-radius: 5px;
+    color: #fff;
+    text-align: left;
+    font-weight: lighter;
+}
+.addBookText{
+    font-family: 'Roboto', sans-serif;
+    resize: vertical;
+    height: 50px;
+
+}
 
 .categoryOption{
     width: 90%;
@@ -381,7 +399,40 @@ li a:last-child {
     background-color: #F8FBFF;
 }
 
+.errorpage{
+    width: 100vw;
+    height: 83vh;
+    background-color: #F8FBFF;
+    overflow: auto;
+}
+.errorpage p{
+    text-align: center;
+    font-size: 150%;
+    opacity: 0.3;
+    color: #0e3d6c;
+    font-weight: lighter;
+    position: relative;
+    bottom: 10vh;
+}
 
+.errorpage a{
+    text-decoration: none;
+    color: #0e3d6c;
+    padding: 10px 18px;
+    border: 1px solid #0e3d6c;
+    display: block;
+    border-radius: 100px;
+    margin: 0 auto;
+    width: 138px;
+    position: relative;
+    bottom: 10vh;
+}
+
+.Error404{
+    display: block;
+    width: 15vw;
+    margin: 15vh auto;
+}
 
 #pageTitle {
     margin-left: 10vw;
@@ -392,6 +443,187 @@ li a:last-child {
     font-size: 160%;
     margin-bottom: 4vw;
 
+}
+.bookList{
+    margin-left: 10vw;
+    width: 80vw;
+    columns: 5;
+    column-gap: 40px;
+}
+
+.bookList .bookPlace{
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin: 0 0 20px;
+    background-color: #fff;
+    break-inside: avoid;
+    cursor: pointer;
+}
+
+.bookList .bookPlace .bookImgPlace{
+    width: 100%;
+    border-radius: 15px 15px 0px 0px;
+}
+.bookList .bookPlace h2{
+    margin: 10px 0;
+    text-align: center;
+    color: #0e3d6c;
+    font-size: 110%;
+}
+
+.poet{
+    width: 17px;
+    height: 22px;
+    float: left;
+    position: relative;
+    top: 15px;
+}
+.authorName{
+    float: left;
+    margin-left: 10px;
+    text-align: center;
+    color: #0e3d6c;
+    font-size: 100%;
+    font-weight: lighter;
+}
+.authorPlace{
+    justify-content: center;
+    display: flex;
+    position: relative;
+    bottom: 10px;
+    margin: 0px;
+}
+.bookList .bookPlace .available{
+    text-align: center;
+    font-size: 100%;
+    font-weight: lighter;
+    color: #00C66B;
+    position: relative;
+    bottom: 20px;
+
+}
+.issued{
+    color: #ED2626;
+    text-align: center;
+    font-size: 100%;
+    font-weight: lighter;
+    position: relative;
+    bottom: 20px;
+}
+
+.reserved{
+    color: #eac820;
+    text-align: center;
+    font-size: 100%;
+    font-weight: lighter;
+    position: relative;
+    bottom: 20px;
+}
+
+.bookAndDescPlace{
+    position: relative;
+    bottom: 30px;
+    width: 100vw;
+    overflow: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+
+.bookAndDescPlace .bookImgPlace{
+    margin-left: 10vw;
+    float: left;
+    width: 25vw;
+}
+.bookAndDescPlace .bookImgPlace img{
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.3);
+}
+
+.bookAndDescPlace .descPlace{
+    width: 55vw;
+    float: left;
+}
+.bookAndDescPlace .descPlace .BookName:first-child{
+    margin-top: 50px;
+}
+
+.bookAndDescPlace .descPlace .BookName{
+    margin-top: 0px;
+    margin-left: 70px;
+}
+
+.bookAndDescPlace .descPlace .BookName .bookName{
+    background-color: pink;
+    padding: 3px 0px;
+    width: 80px;
+    text-align: center;
+    color: white;
+    background-color: #0e3d6c;
+}
+
+.bookAndDescPlace .descPlace .BookName .bookNamePlace{
+    margin-left: 10px;
+    padding: 3px 0px;
+
+}
+
+.desc{
+    width: 43vw;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.selectedBookButton{
+    float: left;
+    margin-left: 20px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    cursor: pointer;
+}
+.green{
+    margin-left: 70px;
+    border: solid 1px #00C66B;
+    color: #00C66B;
+    text-align: center;
+    font-size: 100%;
+}
+.green span{
+    font-size: 90%;
+    font-weight: bold;
+}
+.red{
+    margin-left: 70px;
+    border: solid 1px #ED2626;
+    color: #ED2626;
+    text-align: center;
+    font-size: 100%;
+}
+.yellow{
+    margin-left: 70px;
+    border: solid 1px #eac820;
+    color: #eac820;
+    text-align: center;
+    font-size: 100%;
+}
+.red span{
+    font-size: 90%;
+    font-weight: bold;
+}
+.gray{
+    border: solid 1px #ddd;
+    color: #ddd;
+    text-align: center;
+}
+.blue{
+    border: solid 1px #0077FA;
+    color: #0077FA;
+    text-align: center;
+}
+.blue span{
+    font-weight: bold;
 }
 
 #search {
@@ -707,7 +939,57 @@ li a:last-child {
     border-radius: 100px;
     margin-right: 5px;
 }
+.emailNotif img{
+    width: 10px;
+    height: 10px;
+}
+.emailNotif{
+    float: right;
+    background-color: #eac820;
+    padding: 5px 8px;
+    border-radius: 1000px;
+    position: relative;
+    right: 10px;
+    cursor: pointer;
+}
+.returnBtn{
+    position: relative;
+    top: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 6px 15px;
+    color: white;
+    background-color: #0D81F5;
+    border-radius: 100px;
+    margin-right: 5px;
+}
 
+.returnBtnS{
+
+    text-decoration: none;
+    cursor: pointer;
+    padding: 6px 15px;
+    color: white;
+    background-color: #0D81F5;
+    border-radius: 100px;
+    margin-right: 5px;
+}
+.issueBtn{
+    cursor: pointer;
+    color: white;
+    padding: 6px 0px;
+    background-color: #ED2626;
+    border-radius: 100px;
+    margin-right: 5px;
+}
+.reserveBtn{
+    cursor: pointer;
+    color: white;
+    padding: 6px 0px;
+    background-color: #eac820;
+    border-radius: 100px;
+    margin-right: 5px;
+}
 .block{
     text-decoration: none;
     cursor: pointer;
@@ -731,6 +1013,9 @@ li a:last-child {
 
 
 @media only screen and (max-width: 1137px) {
+    .bookList{
+        columns: 4;
+    }
     .floatLeft {
 
         margin: 15px 15px;
@@ -740,6 +1025,9 @@ li a:last-child {
 }
 
 @media only screen and (max-width: 1040px) {
+    .bookList{
+        columns: 3;
+    }
 
     ul {
         margin-right: 7vw;
@@ -821,7 +1109,10 @@ li a:last-child {
 }
 
 @media only screen and (max-width: 650px) {
-
+    .bookList{
+        margin-top: 30px;
+        columns: 2;
+    }
     #pageTitle{
         float: none;
     }
@@ -850,6 +1141,10 @@ li a:last-child {
 
 
 @media only screen and (max-width: 500px) {
+    .bookList{
+        margin-top: 30px;
+        columns: 1;
+    }
 
     ul {
         margin-left: 15vw;
@@ -861,3 +1156,16 @@ li a:last-child {
 
 /* Student.php */
 
+.studentProfile{
+    background-color: red;
+    border-radius: 1000px;
+    width: 50px;
+    height: 50px;
+    margin: 0px;
+    background-image: url("img/profile.JPG");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    margin: 0 10px;
+    cursor: pointer;
+}

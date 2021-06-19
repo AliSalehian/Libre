@@ -2,6 +2,8 @@
     session_start();
     include ("connection.php");
     include("NotLoggedIn.php");
+    include ("AdminCheck.php");
+
 
     if(!isset($_GET['option'])) $option = 10;
     else $option = $_GET['option'];
@@ -70,7 +72,7 @@
             <li class="floatLeft"><a href="category.php?page=1">Categories</a></li>
             <li class="floatLeft"><a href="author.php?page=1">Authors</a></li>
             <li class="floatLeft"><a href="book.php?page=1">Books</a></li>
-            <li class="floatLeft"><a href="">Issue Books</a></li>
+            <li class="floatLeft"><a href="IssueBooks.php?page=1">Issue Books</a></li>
             <li class="floatLeft selected"><a href="student.php?page=1">Students</a></li>
             <li class="floatLeft"><a href="">Profile</a></li>
             <li class="floatLeft" id="button"><a href="index.php?logout=1">Logout</a></li>
@@ -86,7 +88,7 @@
             </form>
         </div>
         <div class="clear"></div>
-        <!--<? echo $_SESSION['id']; ?> -->
+        <!--<?php echo $_SESSION['id']; ?> -->
         <form class="rowNums">
             <select id="records" class="options" name="rows">
                 <option value="0">Select</option>
@@ -100,7 +102,7 @@
         <div class="pageNum">
 
             <i class="fas fa-chevron-left float-left leftrightIcon"></i>
-            <?
+            <?php
                 for($page = 1; $page <= $numberOfPages; $page++){
                     echo "<p class='numPage'><a href='student.php?page=".$page."'>".$page."</a></p>";
                 }
@@ -122,20 +124,19 @@
                     <th>Action</th>
                 </tr>
                 <?php
-
-                while($row = mysqli_fetch_array($result)){
-                    echo "<td>".++$rows."</td>";
-                    echo "<td>SID-".$row['id']."</td>";
-                    if($row['Status'] == 1) echo "<td><a class='active'>Active</td>";
-                    else if($row['Status'] == 0) echo "<td><a class='inactive'>Blocked</td>";
-                    echo "<td>".$row['FullName']."</td>";
-                    echo "<td>".$row['Email']."</td>";
-                    echo "<td>".$row['MobileNumber']."</td>";
-                    echo "<td>".$row['Reg Date']."</td>";
-                    if($row['Status'] == 1) echo "<td><a href='student.php?page=".$_GET['page']."' id='" .$row['id']."' class='block'>Block</a></td>";
-                    else if($row['Status'] == 0) echo "<td><a href='student.php?page=".$_GET['page']."' id='" .$row['id']."' class='unblock'>Unblock</a></td>";
-                    echo "</tr>";
-                }
+                    while($row = mysqli_fetch_array($result)){
+                        echo "<td>".++$rows."</td>";
+                        echo "<td>SID-".$row['id']."</td>";
+                        if($row['Status'] == 1) echo "<td><a class='active'>Active</td>";
+                        else if($row['Status'] == 0) echo "<td><a class='inactive'>Blocked</td>";
+                        echo "<td>".$row['FullName']."</td>";
+                        echo "<td>".$row['Email']."</td>";
+                        echo "<td>".$row['MobileNumber']."</td>";
+                        echo "<td>".$row['Reg Date']."</td>";
+                        if($row['Status'] == 1) echo "<td><a href='student.php?page=".$_GET['page']."' id='" .$row['id']."' class='block'>Block</a></td>";
+                        else if($row['Status'] == 0) echo "<td><a href='student.php?page=".$_GET['page']."' id='" .$row['id']."' class='unblock'>Unblock</a></td>";
+                        echo "</tr>";
+                    }
                 ?>
 
 

@@ -87,7 +87,12 @@
                 $_SESSION['id'] = $fetch['id'];
                 print_r($_SESSION);
                 //Redirect
-                header("Location: dashboard.php");
+                if($fetch['admin'] == 1){
+                    header("Location: dashboard.php");
+
+                }else{
+                    header("Location: studentDashboard.php");
+                }
                 exit();
             }else if($fetch1){
                 $errorS = "<br>You are blocked. Contact 0800 LIBRE";

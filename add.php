@@ -41,6 +41,7 @@
 
     $addBookError = "";
     if(isset($_POST['submitNewBook'])){
+
         if(!$_POST['addBook']){
             $addBookError = "Please enter a Book name<br>";
         }
@@ -55,6 +56,9 @@
         }
         if(!$_POST['isbnBook']){
             $addBookError .= "Please enter the book's ISBN No.<br>";
+        }
+        if(!$_POST['Description']){
+            $addBookError .= "Please enter the book's Plot<br>";
         }
 
         if($addBookError) echo "There are some errors" . $addBookError;
@@ -81,15 +85,19 @@
                     $fetchAuthorID = mysqli_fetch_array($result);
                     $fetchAuthorID = $fetchAuthorID['id'];
 
+                    $file = addslashes(file_get_contents($_FILES['bookImg']['tmp_name']));
 
-                    $query = "INSERT INTO `Book` (`BookName`, `authorID`, `categoryID`, `BookPrice`, `BookISBN`) 
-                                VALUES(
-                                '".mysqli_real_escape_string($conn, $_POST['addBook'])."',
-                                '".$fetchAuthorID."', 
-                                '".$fetchCategoryID."', 
-                                '".$_POST['priceBook']."',
-                                '".$_POST['isbnBook']."')";
+                    $query = "INSERT INTO `Book` (`BookName`, `authorID`, `categoryID`, `BookPrice`, `BookISBN` ,`img`, `Description`) 
+                    VALUES(
+                    '" . mysqli_real_escape_string($conn, $_POST['addBook']) . "',
+                    '" . $fetchAuthorID . "', 
+                    '" . $fetchCategoryID . "', 
+                    '" . $_POST['priceBook'] . "',
+                    '" . $_POST['isbnBook'] . "',
+                    '" . $file . "',
+                    '" . $_POST['Description'] . "')";
                     mysqli_query($conn, $query) or die('Error, insert query failed');
+
                 }else{
 
 
@@ -110,5 +118,25 @@
         }
     }
 
+    $submitEmailError = "";
+    if(isset($_POST['submitEmail'])){
+        if(!$_POST['emailText']){
+            $submitEmailError = "Please enter the Email text<br>";
+            echo "he";
+        }
+        if($submitEmailError) echo "There are some errors" . $submitEmailError;
+        else{
+            $query = "SELECT * FROM Student WHERE FullName = '".$_POST['userEmail']."'";
+            $result = mysqli_query($conn,$query);
+            $result = mysqli_fetch_array($result);
+            if(mail($result['Email'],"Email from Liber",$_POST['emailText'])){
+                //echo "Email Sent";
+            }else{
+                echo "Email failed";
+            }
 
+        }
+
+
+    }
 ?>

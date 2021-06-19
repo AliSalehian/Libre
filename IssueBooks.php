@@ -2,7 +2,8 @@
 session_start();
 include ("connection.php");
 include("NotLoggedIn.php");
-include("AdminCheck.php");
+include ("AdminCheck.php");
+
 include("add.php");
 include("edit.php");
 
@@ -10,7 +11,12 @@ if(!isset($_GET['option'])) $option = 10;
 else $option = $_GET['option'];
 
 $resultPerPage = $option;
-$query = "SELECT * FROM Author";
+$query = "SELECT * 
+          FROM IssueDetails i 
+          JOIN Book b
+            ON i.issuebookID = b.bookID
+          JOIN Student s
+            ON s.id = i.studentID";
 $result = mysqli_query($conn, $query);
 $numberOfResults = mysqli_num_rows($result);
 
@@ -20,7 +26,13 @@ if(!isset($_GET['page'])) $page = 1;
 else $page = $_GET['page'];
 $this_page_first_result = ($page-1)*$resultPerPage;
 
-$query = "SELECT * FROM Author LIMIT ".$this_page_first_result.','.$resultPerPage;
+$query = "SELECT * 
+          FROM IssueDetails i 
+          JOIN Book b
+            ON i.issuebookID = b.bookID
+          JOIN Student s
+            ON s.id = i.studentID
+          LIMIT ".$this_page_first_result.','.$resultPerPage;
 $result = mysqli_query($conn, $query);
 $rows = $this_page_first_result;
 
@@ -32,7 +44,7 @@ $rows = $this_page_first_result;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width , initial-scale=1.0">
-    <title>Admin-Author</title>
+    <title>Admin-Issue Books</title>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="style.css" type="text/css" />
@@ -45,54 +57,38 @@ $rows = $this_page_first_result;
 </head>
 
 <body>
-
 <div class="blackBackPop"></div>
 <div class="popup center">
     <i class="fas fa-times exitIcon"></i>
     <div class="icon">
-        <i class="fa fa-plus"></i>
+        <i class="fa fa-at"></i>
     </div>
     <div class="title">
-        Add an Author
+        Send an Email
     </div>
     <div class="description">
-
         <form method="post">
-            <p class="addName">Author Name</p>
-            <input placeholder="Name of the Author" name="addAuthor" type="text" class="addFormTextArea">
-            <input class="popUpSubmitBtn" type="submit" name="submitNewAuthor" value="Add">
+            <p class="addName">Name</p>
+            <input id="userEmail" name="userEmail" class="addFormTextArea" readonly>
+            <p class="addName">Sample Emails</p><br><br><br>
+            <p class="sampleEmail">Dear <span class="issuedName"></span>  <br><br>Plase contact 0800Liber ASAP <br><br>Regards, Liber Customer service.</p>
+            <p class="sampleEmail">Dear <span class="issuedName"></span>  <br><br>You have issued '<span id="bookNamePlace"></span>'.
+                <br>Please return the book within the next 2 days<br><br>Regards, Liber Customer service.</p>
+            <p class="addName">Email</p>
+            <textarea name="emailText" placeholder="Email text" class="addFormTextArea addBookText"></textarea>
+            <input class="popUpSubmitBtn" type="submit" name="submitEmail" value="Send Email">
         </form>
     </div>
 </div>
 
-<div class="blackBackPopEdit"></div>
-<div class="popupEdit center">
-    <i class="fas fa-times exitIconEdit"></i>
-    <div class="icon">
-        <i class="far fa-edit"></i>
-    </div>
-    <div class="title">
-        Edit Author Name
-    </div>
-    <div class="description">
-
-        <form method="post">
-            <p class="addName">ID</p>
-            <input id="authorIdPlaceHolder" name="AuthorId" class="addFormTextArea" readonly>
-            <p class="addName">Author Name</p>
-            <input id="authorPlaceHolder" placeholder="Name of the Author" name="editAuthor" type="text" class="addFormTextArea">
-            <input class="popUpSubmitBtn" type="submit" name="submitEditAuthor" value="Edit">
-        </form>
-    </div>
-</div>
 <div id="Menu">
     <p id="name">LIBRE</p>
     <ul>
         <li class="floatLeft"><a href="dashboard.php">Dashboard</a></li>
         <li class="floatLeft"><a href="category.php?page=1">Categories</a></li>
-        <li class="floatLeft selected"><a href="author.php?page=1">Authors</a></li>
+        <li class="floatLeft"><a href="author.php?page=1">Authors</a></li>
         <li class="floatLeft"><a href="book.php?page=1">Books</a></li>
-        <li class="floatLeft"><a href="IssueBooks.php?page=1">Issue Books</a></li>
+        <li class="floatLeft selected"><a href="IssueBooks.php?page=1">Issue Books</a></li>
         <li class="floatLeft"><a href="student.php?page=1">Students</a></li>
         <li class="floatLeft"><a href="">Profile</a></li>
         <li class="floatLeft" id="button"><a href="index.php?logout=1">Logout</a></li>
@@ -100,7 +96,7 @@ $rows = $this_page_first_result;
 </div>
 
 <div class="page">
-    <div id="pageTitle">Author</div>
+    <div id="pageTitle">Issue Books</div>
     <div id="searchPlace">
         <form>
             <div id="searchIcon"></div>
@@ -120,14 +116,10 @@ $rows = $this_page_first_result;
     </form>
     <p id="recordsPerPage">Records per page</p>
     <div class="pageNum">
-        <div class="floatLeft popupBtnn">
-            <i class="fas fa-plus float-left plusIcon"></i>
-            <p class="float-left addBtn">Add</p>
-        </div>
         <i class="fas fa-chevron-left float-left leftrightIcon"></i>
         <?php
         for($page = 1; $page <= $numberOfPages; $page++){
-            echo "<p class='numPage'><a href='author.php?page=".$page."'>".$page."</a></p>";
+            echo "<p class='numPage'><a href='IssueBooks.php?page=".$page."'>".$page."</a></p>";
         }
         ?>
         <i class="fas fa-chevron-right float-left leftrightIcon"></i>
@@ -137,19 +129,33 @@ $rows = $this_page_first_result;
         <table id="category">
             <tr>
                 <th>#</th>
-                <th>Author Name</th>
-                <th>Creation Date</th>
+                <th>Student Name</th>
+                <th>Book</th>
+                <th>Issue Date</th>
+                <th>Return Date</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
             <?php
 
-                while($row = mysqli_fetch_array($result)){
-                    echo "<td>".++$rows."</td>";
-                    echo "<td>".$row['AuthorName']."</td>";
-                    echo "<td>".$row['Reg Date']."</td>";
-                    echo "<td><a href='author.php?page='".$_GET['page']." id='".$row['id']."' class='edit'>Edit</a></td>";
-                    echo "</tr>";
+            while($row = mysqli_fetch_array($result)){
+                echo "<td>".++$rows."</td>";
+                echo "<td>".$row['FullName']."</td>";
+                echo "<td>".$row['BookName']."</td>";
+                echo "<td>".$row['IssueDate']."</td>";
+                echo "<td>".$row['ReturnDate']."</td>";
+                if($row['issueStatus'] == 1 ){
+                    echo "<td><p class='issueBtn'>Issued</p></td>";
+                    echo "<td><a id='".$row['issueID']."' class='returnBtn'>Return Book</a><a class='emailNotif'><img src='img/email.png'></a></td>";
                 }
+                else if($row['issueStatus'] == 2 ){
+                    echo "<td><p class='reserveBtn'>Reserved</p></td>";
+                    echo "<td><a id='".$row['issueID']."' class='returnBtn'>Dismiss Reserve</a><a class='emailNotif'><img src='img/email.png'></a></td>";
+                }
+
+
+                echo "</tr>";
+            }
             ?>
 
 

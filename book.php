@@ -2,6 +2,8 @@
 session_start();
 include ("connection.php");
 include("NotLoggedIn.php");
+include ("AdminCheck.php");
+
 include("add.php");
 include("edit.php");
 
@@ -66,13 +68,13 @@ $categoryResultEdit = mysqli_query($conn, $categoryQuery);
         Add a Book
     </div>
     <div class="description">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <p class="addName">Book Name</p>
             <input placeholder="Book Name" name="addBook" type="text" class="addFormTextArea">
             <p class="addName">Category Name</p>
             <select id="categoryOption" class="categoryOption" name="categoryOption">
                 <option value="Select">Select</option>
-                <?
+                <?php
                     while ($row = mysqli_fetch_array($categoryResult)){
                         echo"hi";
                         echo "<option>".$row['CategoryName']."</option>";
@@ -85,6 +87,10 @@ $categoryResultEdit = mysqli_query($conn, $categoryQuery);
             <input placeholder="Price Name" name="priceBook" type="number" class="addFormTextArea">
             <p class="addName">ISBN</p>
             <input placeholder="Internation Standard Book Number" name="isbnBook" type="number" class="addFormTextArea">
+            <p class="addName">Book Plot</p>
+            <textarea name="Description" placeholder="Book Plot" class="addFormTextArea addBookText"></textarea>
+            <p class="addName">Book Image</p>
+            <input placeholder="Book image" name="bookImg" type="file" class="addFormTextArea">
             <input class="popUpSubmitBtn" type="submit" name="submitNewBook" value="Add">
         </form>
     </div>
@@ -109,7 +115,7 @@ $categoryResultEdit = mysqli_query($conn, $categoryQuery);
             <p class="addName">Category Name</p>
             <select class="categoryOption" name="editCategoryOption">
                 <option value="Select">Select</option>
-                <?
+                <?php
                 while ($row = mysqli_fetch_array($categoryResultEdit)){
                     echo "<option>".$row['CategoryName']."</option>";
                 }
@@ -132,7 +138,7 @@ $categoryResultEdit = mysqli_query($conn, $categoryQuery);
         <li class="floatLeft"><a href="category.php?page=1">Categories</a></li>
         <li class="floatLeft"><a href="author.php?page=1">Authors</a></li>
         <li class="floatLeft selected"><a href="book.php?page=1">Books</a></li>
-        <li class="floatLeft"><a href="">Issue Books</a></li>
+        <li class="floatLeft"><a href="IssueBooks.php?page=1">Issue Books</a></li>
         <li class="floatLeft"><a href="student.php?page=1">Students</a></li>
         <li class="floatLeft"><a href="">Profile</a></li>
         <li class="floatLeft" id="button"><a href="index.php?logout=1">Logout</a></li>
@@ -148,7 +154,7 @@ $categoryResultEdit = mysqli_query($conn, $categoryQuery);
         </form>
     </div>
     <div class="clear"></div>
-    <!--<? echo $_SESSION['id']; ?> -->
+    <!--<?php echo $_SESSION['id']; ?> -->
     <form class="rowNums">
         <select id="records" class="options" name="rows">
             <option value="0">Select</option>
@@ -165,7 +171,7 @@ $categoryResultEdit = mysqli_query($conn, $categoryQuery);
             <p class="float-left addBtn">Add</p>
         </div>
         <i class="fas fa-chevron-left float-left leftrightIcon"></i>
-        <?
+        <?php
         for($page = 1; $page <= $numberOfPages; $page++){
             echo "<p class='numPage'><a href='book.php?page=".$page."'>".$page."</a></p>";
         }
@@ -187,17 +193,17 @@ $categoryResultEdit = mysqli_query($conn, $categoryQuery);
             </tr>
             <?php
 
-            while($row = mysqli_fetch_array($result)){
-                echo "<td>".++$rows."</td>";
-                echo "<td>".$row['BookName']."</td>";
-                echo "<td>".$row['AuthorName']."</td>";
-                echo "<td>".$row['CategoryName']."</td>";
-                echo "<td>£".$row['BookPrice']."</td>";
-                echo "<td>".$row['BookISBN']."</td>";
-                echo "<td>".$row['Reg Date']."</td>";
-                echo "<td><a id='".$row['bookID']."' class='edit BookPage'>Edit</a></td>";
-                echo "</tr>";
-            }
+                while($row = mysqli_fetch_array($result)){
+                    echo "<td>".++$rows."</td>";
+                    echo "<td>".$row['BookName']."</td>";
+                    echo "<td>".$row['AuthorName']."</td>";
+                    echo "<td>".$row['CategoryName']."</td>";
+                    echo "<td>£".$row['BookPrice']."</td>";
+                    echo "<td>".$row['BookISBN']."</td>";
+                    echo "<td>".$row['Reg Date']."</td>";
+                    echo "<td><a id='".$row['bookID']."' class='edit BookPage'>Edit</a></td>";
+                    echo "</tr>";
+                }
             ?>
 
 

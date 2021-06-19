@@ -2,12 +2,15 @@
 session_start();
 include ("connection.php");
 include("NotLoggedIn.php");
+include("AdminCheck.php");
+
 include("testPage.php");
 
 $book = findInQuery("b.bookID", "Book b", $conn);
 $author = findInQuery("a.id", "Author a", $conn);
 $category = findInQuery("c.id", "Category c", $conn);
 $student = findInQuery("s.id", "Student s", $conn);
+$issueBooks = findInQueryWithWhere("i.issueID", "IssueDetails i", "i.issueStatus", $conn);
 
 ?>
 
@@ -44,7 +47,7 @@ $student = findInQuery("s.id", "Student s", $conn);
         <li class="floatLeft"><a href="category.php?page=1">Categories</a></li>
         <li class="floatLeft"><a href="author.php?page=1">Authors</a></li>
         <li class="floatLeft "><a href="book.php?page=1">Books</a></li>
-        <li class="floatLeft"><a href="">Issue Books</a></li>
+        <li class="floatLeft"><a href="IssueBooks.php?page=1">Issue Books</a></li>
         <li class="floatLeft"><a href="student.php?page=1">Students</a></li>
         <li class="floatLeft"><a href="">Profile</a></li>
         <li class="floatLeft" id="button"><a href="index.php?logout=1">Logout</a></li>
@@ -70,35 +73,35 @@ $student = findInQuery("s.id", "Student s", $conn);
                 <img src="img/books.png">
             </div>
             <p class="boxTextStyle">Number of books</p>
-            <p class="boxNumberStyle"> <? echo $book ?> </p>
+            <p class="boxNumberStyle"> <?php echo $book ?> </p>
         </div>
         <div class="box">
             <div class="iconBack">
                 <img src="img/poet.png">
             </div>
             <p class="boxTextStyle">Number of authors</p>
-            <p class="boxNumberStyle"> <? echo $author ?> </p>
+            <p class="boxNumberStyle"> <?php echo $author ?> </p>
         </div>
         <div class="box">
             <div class="iconBack">
                 <img src="img/dashboard.png">
             </div>
             <p class="boxTextStyle">Number of categories</p>
-            <p class="boxNumberStyle"> <? echo $category ?> </p>
+            <p class="boxNumberStyle"> <?php echo $category ?> </p>
         </div>
         <div class="box">
             <div class="forSmallIconBack">
                 <img src="img/students.png">
             </div>
             <p class="boxTextStyle">Number of students</p>
-            <p class="boxNumberStyle"> <? echo $student ?> </p>
+            <p class="boxNumberStyle"> <?php echo $student ?> </p>
         </div>
         <div class="box">
             <div class="iconBack">
                 <img src="img/read.png">
             </div>
-            <p class="boxTextStyle">Number of issues books</p>
-            <p class="boxNumberStyle"> 148 </p>
+            <p class="boxTextStyle">Number of issued books</p>
+            <p class="boxNumberStyle"> <?php echo $issueBooks ?> </p>
         </div>
 
 
