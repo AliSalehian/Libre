@@ -74,9 +74,23 @@ $rows = $this_page_first_result;
 <div id="Menu">
     <p id="name">LIBRE</p>
     <ul>
+        <?php
+            if($_SESSION['id'] == 19){
+                echo '<li class="floatLeft"><a href="dashboard.php?">Admin Dashboard</a></li>';
+            }
+        ?>
         <li class="floatLeft"><a href="studentDashboard.php?page=1">Books</a></li>
         <li class="floatLeft selected"><a href="studentIssueBook.php?page=1">Issue Books</a></li>
-        <li class="floatLeft studentProfile"><a href="studentProfile.php"></a></li>
+        <li class="floatLeft studentProfile">
+            <?php
+            if(is_null($row['profileImg'])) {
+                echo '<img class="profileImgNo" src="img/user.png"/>';
+            }
+            else {
+                echo '<img class="profileImg" src="data:image/jpeg;base64,' . base64_encode($row['profileImg']) . '"/>';
+            }
+            ?>
+        </li>
         <li class="floatLeft" id="button"><a href="index.php?logout=1">Logout</a></li>
     </ul>
 </div>
@@ -125,7 +139,7 @@ $rows = $this_page_first_result;
 
             while($row = mysqli_fetch_array($result)){
                 echo "<td>".++$rows."</td>";
-                echo "<td>".$row['BookName']."</td>";
+                echo "<td><img class='issueBookImg' src='data:image/jpeg;base64,".base64_encode( $row['img'] )."'><p>".$row['BookName']."</p></td>";
                 echo "<td>".$row['IssueDate']."</td>";
                 echo "<td>".$row['ReturnDate']."</td>";
                 if($row['issueStatus'] == 1 ){

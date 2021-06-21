@@ -69,12 +69,13 @@
         <p id="name">LIBRE</p>
         <ul>
             <li class="floatLeft"><a href="dashboard.php">Dashboard</a></li>
+            <li class="floatLeft"><a href="studentDashboard.php?page=1">BL</a></li>
             <li class="floatLeft"><a href="category.php?page=1">Categories</a></li>
             <li class="floatLeft"><a href="author.php?page=1">Authors</a></li>
             <li class="floatLeft"><a href="book.php?page=1">Books</a></li>
             <li class="floatLeft"><a href="IssueBooks.php?page=1">Issue Books</a></li>
             <li class="floatLeft selected"><a href="student.php?page=1">Students</a></li>
-            <li class="floatLeft"><a href="">Profile</a></li>
+            <li class="floatLeft"><a href="adminProfile.php">Profile</a></li>
             <li class="floatLeft" id="button"><a href="index.php?logout=1">Logout</a></li>
         </ul>
     </div>

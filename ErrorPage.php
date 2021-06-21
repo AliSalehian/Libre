@@ -45,9 +45,23 @@ $row = mysqli_fetch_array($result);
 <div id="Menu">
     <p id="name">LIBRE</p>
     <ul>
+        <?php
+        if($_SESSION['id'] == 19){
+            echo '<li class="floatLeft"><a href="dashboard.php?">Admin Dashboard</a></li>';
+        }
+        ?>
         <li class="floatLeft selected"><a href="studentDashboard.php?page=1">Books</a></li>
-        <li class="floatLeft"><a href="">Issue Books</a></li>
-        <li class="floatLeft studentProfile"><a href="studentProfile.php"></a></li>
+        <li class="floatLeft"><a href="studentIssueBook.php?page=1">Issue Books</a></li>
+        <li class="floatLeft studentProfile">
+            <?php
+            if(is_null($row['profileImg'])) {
+                echo '<img class="profileImgNo" src="img/user.png"/>';
+            }
+            else {
+                echo '<img class="profileImg" src="data:image/jpeg;base64,' . base64_encode($row['profileImg']) . '"/>';
+            }
+            ?>
+        </li>
         <li class="floatLeft" id="button"><a href="index.php?logout=1">Logout</a></li>
     </ul>
 </div>

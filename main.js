@@ -1,4 +1,5 @@
 $(document).ready(function (){
+ //alert($( window ).width());
  var id = "";
  var text = "";
  var Nstatus;
@@ -33,7 +34,7 @@ $(document).ready(function (){
  });
 
 // When clicks on pop up to add
- $(document).on('click','.popupBtnn, #dismiss-popup-btn, .exitIcon, .blackBackPop, .emailNotif',function() {
+ $(document).on('click','.popupBtnn, #dismiss-popup-btn, .exitIcon, .blackBackPop, .emailNotif, .updateImg, .profileImg',function() {
   var bookName = $(this).parent().prev().prev().prev().prev().text();
   userName = $(this).parent().prev().prev().prev().prev().prev().text();
   $('#bookNamePlace').text(bookName);
@@ -122,5 +123,42 @@ $(document).ready(function (){
    code: 5
   });
  });
+
+ $(document).on('click', '.studentProfile', function () {
+  window.location.href = "studentProfile.php";
+ });
+
+
+ $(document).on('click', '.freeDownloadBut', function () {
+  var id = $(this).attr('id');
+  window.open('pdfEmbed.php?id='+ id +'', '_blank');
+ });
+
+ $(document).on('click', '#name', function () {
+
+  window.location.href = "studentDashboard.php";
+ });
+
+ $(document).on('click', '.removeBook', function () {
+  var id = $(this).attr('id');
+  $.post("actions.php", {
+   id: id,
+   code: 6
+  });
+  window.location.href = "book.php?page=1";
+ });
+ $(document).on('click', '.register, .grayUnderline', function () {
+
+  $(".loginPlace").toggleClass("activeSec");
+  $(".signUpPlace").toggleClass("activeSec");
+
+  if($(".loginPlace").hasClass("activeSec")){
+   $('.register').text("Register");
+  }else{
+   $('.register').text("Sign In");
+  }
+  //$(".signUpPlace").addClass('activeSec');
+ });
+
 });
 

@@ -79,6 +79,11 @@ $day=date("d",$time);
 <div id="Menu">
     <p id="name">LIBRE</p>
     <ul>
+        <?php
+        if($_SESSION['id'] == 19){
+            echo '<li class="floatLeft"><a href="dashboard.php?">Admin Dashboard</a></li>';
+        }
+        ?>
         <li class="floatLeft selected"><a href="studentDashboard.php?page=1">Books</a></li>
         <li class="floatLeft"><a href="studentIssueBook.php?page=1">Issue Books</a></li>
         <li class="floatLeft studentProfile"><a href="studentProfile.php"></a></li>
@@ -147,6 +152,17 @@ $day=date("d",$time);
                     echo '<p class="selectedBookButton gray">Reserve for a week<br> <span>£2.00</span></p>';
                 }
             ?>
+            <?php
+
+                if(empty($r['summaryPDF'])){
+
+                    echo '<p id="'.$bookID.'" class="freeDownloadButDis">Download the summary</p>';
+                }else if(!empty($r['summaryPDF'])){
+                    echo '<p id="'.$bookID.'" class="freeDownloadBut">Download the summary</p>';
+
+                }
+            ?>
+
 
         </div>
 

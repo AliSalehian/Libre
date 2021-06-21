@@ -3,25 +3,21 @@ session_start();
 include ("connection.php");
 include("NotLoggedIn.php");
 
-echo $_POST['boookid'];
-
 
 $id = $_SESSION['id'];
+$bookID = $_GET['id'];
+
 $query = "SELECT * FROM Student WHERE id = '".$id."'";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_array($result);
 
-$query = "SELECT * 
-          FROM Book b 
-          JOIN Author a 
-            ON b.authorID = a.id  
-          JOIN Category c 
-            ON b.categoryID = c.id
-          LEFT JOIN IssueDetails i
-            ON i.issuebookID = b.bookID
-          ORDER BY i.issueStatus ASC";
-$result = mysqli_query($conn, $query);
 
+$query = "SELECT * 
+FROM Book b 
+WHERE bookID ='".$bookID."'
+LIMIT 1";
+    $result = mysqli_query($conn, $query);
+    $r= mysqli_fetch_array($result);
 ?>
 
 
@@ -33,7 +29,7 @@ $result = mysqli_query($conn, $query);
     <meta name="viewport" content="width=device-width , initial-scale=1.0">
     <title>
         <?php
-            echo $row['FullName']. " Dashboard";
+        echo $row['FullName']. " Dashboard";
         ?>
     </title>
 
@@ -64,23 +60,14 @@ $result = mysqli_query($conn, $query);
         ?>
         <li class="floatLeft selected"><a href="studentDashboard.php?page=1">Books</a></li>
         <li class="floatLeft"><a href="studentIssueBook.php?page=1">Issue Books</a></li>
-        <li class="floatLeft studentProfile">
-            <?php
-                if(is_null($row['profileImg'])) {
-                    echo '<img class="profileImgNo" src="img/user.png"/>';
-                }
-                else {
-                    echo '<img class="profileImg" src="data:image/jpeg;base64,' . base64_encode($row['profileImg']) . '"/>';
-                }
-            ?>
-        </li>
+        <li class="floatLeft studentProfile"><a href="studentProfile.php"></a></li>
         <li class="floatLeft" id="button"><a href="index.php?logout=1">Logout</a></li>
     </ul>
 </div>
 
 <div class="page">
 
-    <div id="pageTitle">Books</div>
+    <div id="pageTitle"><?php echo $r['BookName'] ?></div>
     <div id="searchPlace">
         <form>
             <div id="searchIcon"></div>
@@ -88,27 +75,9 @@ $result = mysqli_query($conn, $query);
         </form>
     </div>
     <div class="clear"></div>
-
-    <div class="bookList">
-        <?php
-
-            while($i = mysqli_fetch_array($result)){
-                echo '<div class="bookPlace" id = "'.$i['bookID'].'">';
-                echo '<img class="bookImgPlace" src="data:image/jpeg;base64,'.base64_encode( $i['img'] ).'"/>';
-                echo '<h2>'.$i['BookName'].'</h2>';
-                echo '<div class="authorPlace">';
-                echo '<img class="poet" src="img/poet.png">';
-                echo '<h3 class="authorName">'.$i['AuthorName'].'</h3>';
-                echo '</div>';
-                echo '<div class="clear"></div>';
-                if($i['issueStatus'] == 1)  echo '<h3 class="issued">Issued</h3>';
-                else if($i['issueStatus'] == 2) echo '<h3 class="reserved">Reserved</h3>';
-                else echo '<h3 class="available">Available</h3>';
-                echo '</div>';
-            }
-        ?>
+    <div class="pdfContainer" style="padding: 30px">
+        <?php echo '<embed src="data:application/pdf;base64,'.base64_encode( $r['summaryPDF'] ).'" width="100%" height="1000px"/>'; ?>
     </div>
-    <br>
 
 </div>
 <!--<div id="bottom">

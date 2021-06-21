@@ -56,6 +56,7 @@
 
 
                 //Redirect to the dashboard;
+                header("Location: studentDashboard.php");
             }
 
         }

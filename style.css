@@ -333,7 +333,7 @@ input[type=number]::-webkit-outer-spin-button {
     overflow: auto;
 }
 #name {
-
+    cursor: pointer;
     margin-top: 45px;
     color: #0077FA;
     font-weight: bold;
@@ -375,7 +375,6 @@ ul {
 .selected a {
     color: #0e3d6c !important;
     opacity: 1 !important;
-
 }
 
 li a {
@@ -394,9 +393,9 @@ li a:last-child {
 
 
 .page {
-
     padding-bottom: 100px;
     background-color: #F8FBFF;
+    overflow: auto;
 }
 
 .errorpage{
@@ -626,7 +625,42 @@ li a:last-child {
     font-weight: bold;
 }
 
+.freeDownloadBut{
+    float: left;
+    margin-left: 70px;
+    padding: 20px 20px;
+    border-radius: 100px;
+    cursor: pointer;
+    background-color:#00C66B;
+    color: #fff;
+    position: relative;
+    bottom: 20px;
+    text-align: center;
+}
+
+.freeDownloadButDis{
+    float: left;
+    margin-left: 70px;
+    padding: 20px 20px;
+    border-radius: 100px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    color: #ddd;
+    position: relative;
+    bottom: 20px;
+    text-align: center;
+}
+
+.issueBookImg{
+    object-fit: cover;
+    width: 40px;
+    height: 40px;
+    float: left;
+    border-radius: 10px;
+}
+
 #search {
+    color: #0e3d6c;
     width: 250px;
     border: none;
     border-radius: 100px;
@@ -634,7 +668,6 @@ li a:last-child {
     box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.3);
     outline: none;
     padding: 13px 40px 13px 50px;
-
 }
 #searchPlace{
     margin-top: 45px;
@@ -657,7 +690,7 @@ li a:last-child {
 ::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
     color: #333;
-    opacity: 0.3;
+    opacity: 0.2;
 }
 
 ::-moz-placeholder {
@@ -695,7 +728,10 @@ li a:last-child {
 }
 
 #boxes {
-    margin: 0 9.2vw;
+    vertical-align:top;
+    display: inline-block;
+    margin-left: 10vw;
+
 }
 
 .box {
@@ -710,6 +746,7 @@ li a:last-child {
     padding-top: 10px;
     color: dimgray;
     box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.3);
+    margin-top: 30px;
 
 }
 
@@ -939,6 +976,16 @@ li a:last-child {
     border-radius: 100px;
     margin-right: 5px;
 }
+
+.removeBook{
+    text-decoration: none;
+    cursor: pointer;
+    padding: 6px 15px;
+    color: white;
+    background-color: #ED2626;
+    border-radius: 100px;
+    margin-right: 5px;
+}
 .emailNotif img{
     width: 10px;
     height: 10px;
@@ -1036,6 +1083,11 @@ li a:last-child {
     #name {
         margin-left: 7vw;
     }
+    .leftProfile{
+        float: none;
+        width: 100vw;
+        margin-left: 70px;
+    }
 
 }
 
@@ -1076,7 +1128,7 @@ li a:last-child {
 
     }
     .floatLeft {
-        font-size: 80%;
+        font-size: 77%;
     }
     #search {
         width: 180px;
@@ -1156,16 +1208,448 @@ li a:last-child {
 
 /* Student.php */
 
+
+
 .studentProfile{
-    background-color: red;
     border-radius: 1000px;
     width: 50px;
     height: 50px;
     margin: 0px;
-    background-image: url("img/profile.JPG");
     background-size: cover;
     background-position: center;
     opacity: 0.5;
     margin: 0 10px;
     cursor: pointer;
+}
+.studentProfileSelected{
+    opacity: 1;
+}
+
+.leftProfile{
+    float: left;
+    width: 25vw;
+    margin-left: 70px;
+}
+
+.leftProfile .profileImg{
+    float: left;
+    cursor: pointer;
+    object-fit: cover;
+    width: 18vw;
+    height: 18vw;
+    border-radius: 1000px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.3);
+    transition: all 1s;
+}
+
+.leftProfile .profileImgNo{
+    cursor: pointer;
+    object-position: 25px;
+    object-fit: scale-down;
+    width: 18vw;
+    height: 18vw;
+    border-radius: 1000px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.3);
+    transition: all 1s;
+}
+
+.leftProfile .profileInputTitle{
+    color: #0e3d6c;
+    margin-left: 25px;
+    font-weight: bold;
+    font-size: 110%;
+    border-radius: 1000px;
+}
+
+.leftProfile .inputProfile{
+    width: 100%;
+    height: 50px;
+    border-radius: 1000px;
+    box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.3);
+    border: none;
+    outline: none;
+    padding: 0 30px;
+    box-sizing: border-box;
+    font-weight: lighter;
+    position: relative;
+    bottom: 10px;
+    color: #0e3d6c;
+    font-size: 100%;
+    font-family: sans-serif;
+}
+
+.gap{
+    height: 50px;
+    background-color: transparent;
+}
+
+.submitProfile{
+    width: 75%;
+    height: 50px;
+    border-radius: 1000px;
+    box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.3);
+    outline: none;
+    padding: 0 30px;
+    font-weight: lighter;
+    background-color: #0e3d6c;
+    color: white;
+    font-size: 100%;
+    font-family: sans-serif;
+    border: none;
+    position: relative;
+    top: 10px;
+}
+
+.studentProfile img{
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 1000px;
+}
+.updateImg img{
+    float: left;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    position: relative;
+    top: 100px;
+    left: 20px;
+    cursor: pointer;
+}
+
+.firstLeftProfile{
+    margin-left: 10vw;
+    margin-top: -50px;
+}
+.test{
+    margin-top: 50px;
+}
+.Error{
+    color: #ED2626;
+    position: relative;
+    bottom: 10px;
+    left: 25px;
+    font-size: 80%;
+}
+@media only screen and (max-width: 1040px) {
+
+    .leftProfile{
+        float: none;
+        width: 80vw;
+        margin-left: 70px;
+        margin-left: 10vw;
+    }
+    .firstLeftProfile{
+        margin-left: 10vw;
+    }
+
+    .leftProfile .inputProfile{
+        width: 50%;
+        display: block;
+        margin: 0 auto;
+    }
+    .leftProfile .profileInputTitle{
+        position: relative;
+        left: 20vw;
+        width: 50%;
+        font-size: 100%;
+    }
+    .updateImg img{
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 2;
+        float: none;
+        margin-left: 27vw;
+    }
+    .leftProfile .profileImg{
+        float: none;
+        display: block;
+        margin: 0 auto;
+        transition: all 1s;
+        z-index: 0;
+
+    }
+    .test{
+        margin-top: 50px;
+    }
+    .gap{
+        height: 0px;
+    }
+    .submitProfile{
+        width: 50%;
+        height: 50px;
+        display: block;
+        margin: 0 auto;
+        font-size: 100%;
+        border: none;
+    }
+    .Error{
+        color: #ED2626;
+        font-size: 80%;
+        text-align: center;
+        margin-right: 50px;
+    }
+}
+
+
+@media only screen and (max-width: 840px) {
+
+    .leftProfile{
+        float: none;
+        width: 80vw;
+        margin-left: 70px;
+        margin-left: 10vw;
+    }
+    .firstLeftProfile{
+        margin-left: 10vw;
+    }
+
+    .leftProfile .inputProfile{
+        width: 70%;
+        display: block;
+        margin: 0 auto;
+    }
+    .leftProfile .profileInputTitle{
+        position: relative;
+        left: 13vw;
+        font-size: 100%;
+    }
+    .updateImg img{
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 2;
+        float: none;
+        margin-left: 27vw;
+    }
+    .leftProfile .profileImg{
+        float: none;
+        display: block;
+        margin: 0 auto;
+        transition: all 1s;
+        z-index: 0;
+
+    }
+    .test{
+        margin-top: 50px;
+    }
+    .gap{
+        height: 0px;
+    }
+    .submitProfile{
+        width: 70%;
+        height: 50px;
+        display: block;
+        margin: 0 auto;
+        font-size: 100%;
+        border: none;
+    }
+}
+
+/*
+Login and signup pages
+ */
+
+#indexMenu{
+    position: relative;
+    overflow: hidden;
+}
+.nav{
+    cursor: pointer;
+    text-align: center;
+    width: 350px;
+    margin:50px auto;
+    background-color: #0077FA;
+    padding: 20px;
+    border-radius: 20px;
+}
+.nav a{
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 115%;
+}
+
+
+.loginPlace{
+    display: none;
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.3);
+    position: relative;
+    bottom: 20px;
+    margin: 0 auto;
+    width: 50vw;
+    height: 500px;
+    background-color: red;
+}
+.signUpPlace{
+    display: none;
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.3);
+    position: relative;
+    bottom: 20px;
+    margin: 0 auto;
+    width: 50vw;
+    height: 500px;
+    background-color: red;
+}
+.loginLeftSec{
+    overflow: auto;
+    width: 50%;
+    height: 100%;
+    background-image: url("img/Asset 3Halo.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: left;
+}
+.firstLine{
+    text-align: center;
+    margin-top: 150px;
+    color: white;
+    font-weight: lighter;;
+}
+.secondLine{
+    text-align: center;
+    position: relative;
+    bottom: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 200%;
+}
+.breakLine{
+    width: 12%;
+    height: 10px;
+    border-radius: 100px;
+    background-color: white;
+    margin: 0 auto;
+    position: relative;
+    bottom: 30px;
+}
+.thin{
+    font-weight: lighter;
+    color: white;
+    font-size: 85%;
+    text-align: center;
+}
+.contactInfo{
+    margin: 0 auto;
+    text-align: center;
+    width: 45%;
+    padding: 3px;
+    background-color: white;
+    color: #0077FA;
+    border-radius: 30px;
+}
+.loginRightSec{
+    float: left;
+    width: 50%;
+    height: 100%;
+    background-color: white;
+}
+
+.loginTitle{
+    color: #0e3d6c;
+    font-weight: bold;
+    font-size: 200%;
+    text-align: center;
+    margin-top: 80px;
+}
+.loginInputs:first-child{
+    margin-top: px;
+}
+.loginInputs{
+    margin-top: 0px;
+    box-sizing: border-box;
+    width: 80%;
+    height: 40px;
+    margin-left: 10%;
+    border-radius: 200px;
+    padding-left: 50px;
+    border: none;
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.3);
+    outline: none;
+}
+.loginIconImg{
+    width: 18px;
+    position: relative;
+    top: 33px;
+    left: 55px;
+}
+.loginSignUp{
+    position: relative;
+    bottom: 15px;
+    display: block;
+    width: 70%;
+    border-radius: 100px;
+    color: white;
+    background-color: #0077FA;
+    border: none;
+    padding: 10px;
+    margin: 0px auto;
+    font-size: 110%;
+}
+.loginSignUp1{
+    position: relative;
+    top: 30px;
+    display: block;
+    width: 70%;
+    border-radius: 100px;
+    color: white;
+    background-color: #0077FA;
+    border: none;
+    padding: 10px;
+    margin: 0px auto;
+    font-size: 110%;
+}
+.grayUnderline{
+    text-align: center;
+    color: #999999;
+    font-size: 85%;
+    display: block;
+    margin: 30px auto;
+    text-decoration: underline;
+}
+
+.activeSec{
+    display: block;
+}
+@media only screen and (max-width: 1160px) {
+    .loginPlace{
+
+        width: 80vw;
+        height: 500px;
+        background-color: red;
+    }
+
+}
+
+@media only screen and (max-width: 640px) {
+    .loginPlace{
+
+        width: 95vw;
+        height: 500px;
+        background-color: red;
+    }
+    .loginLeftSec{
+        width: 100%;
+        float: none;
+    }
+    .loginRightSec{
+        width: 100%;
+        float: none;
+    }
+    .loginIconImg{
+        width: 18px;
+        position: relative;
+        top: 33px;
+        left: 70px;
+    }
+
 }

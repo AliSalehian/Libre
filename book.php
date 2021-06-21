@@ -91,6 +91,8 @@ $categoryResultEdit = mysqli_query($conn, $categoryQuery);
             <textarea name="Description" placeholder="Book Plot" class="addFormTextArea addBookText"></textarea>
             <p class="addName">Book Image</p>
             <input placeholder="Book image" name="bookImg" type="file" class="addFormTextArea">
+            <p class="addName">Book PDF</p>
+            <input placeholder="Book PDF" name="bookPDF" type="file" class="addFormTextArea">
             <input class="popUpSubmitBtn" type="submit" name="submitNewBook" value="Add">
         </form>
     </div>
@@ -134,13 +136,15 @@ $categoryResultEdit = mysqli_query($conn, $categoryQuery);
 <div id="Menu">
     <p id="name">LIBRE</p>
     <ul>
+
         <li class="floatLeft"><a href="dashboard.php">Dashboard</a></li>
+        <li class="floatLeft"><a href="studentDashboard.php?page=1">BL</a></li>
         <li class="floatLeft"><a href="category.php?page=1">Categories</a></li>
         <li class="floatLeft"><a href="author.php?page=1">Authors</a></li>
         <li class="floatLeft selected"><a href="book.php?page=1">Books</a></li>
         <li class="floatLeft"><a href="IssueBooks.php?page=1">Issue Books</a></li>
         <li class="floatLeft"><a href="student.php?page=1">Students</a></li>
-        <li class="floatLeft"><a href="">Profile</a></li>
+        <li class="floatLeft"><a href="adminProfile.php">Profile</a></li>
         <li class="floatLeft" id="button"><a href="index.php?logout=1">Logout</a></li>
     </ul>
 </div>
@@ -201,7 +205,7 @@ $categoryResultEdit = mysqli_query($conn, $categoryQuery);
                     echo "<td>£".$row['BookPrice']."</td>";
                     echo "<td>".$row['BookISBN']."</td>";
                     echo "<td>".$row['Reg Date']."</td>";
-                    echo "<td><a id='".$row['bookID']."' class='edit BookPage'>Edit</a></td>";
+                    echo "<td><a id='".$row['bookID']."' class='edit BookPage'>Edit</a><a id='".$row['bookID']."' class='removeBook'>Remove</a></td>";
                     echo "</tr>";
                 }
             ?>

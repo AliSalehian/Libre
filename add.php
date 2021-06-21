@@ -85,17 +85,19 @@
                     $fetchAuthorID = mysqli_fetch_array($result);
                     $fetchAuthorID = $fetchAuthorID['id'];
 
-                    $file = addslashes(file_get_contents($_FILES['bookImg']['tmp_name']));
+                    $imgFile = addslashes(file_get_contents($_FILES['bookImg']['tmp_name']));
+                    $pdfFile = addslashes(file_get_contents($_FILES['bookPDF']['tmp_name']));
 
-                    $query = "INSERT INTO `Book` (`BookName`, `authorID`, `categoryID`, `BookPrice`, `BookISBN` ,`img`, `Description`) 
+                    $query = "INSERT INTO `Book` (`BookName`, `authorID`, `categoryID`, `BookPrice`, `BookISBN` ,`img`, `Description`, `summaryPDF`) 
                     VALUES(
                     '" . mysqli_real_escape_string($conn, $_POST['addBook']) . "',
                     '" . $fetchAuthorID . "', 
                     '" . $fetchCategoryID . "', 
                     '" . $_POST['priceBook'] . "',
                     '" . $_POST['isbnBook'] . "',
-                    '" . $file . "',
-                    '" . $_POST['Description'] . "')";
+                    '" . $imgFile . "',
+                    '" . $_POST['Description'] . "',
+                    '" . $pdfFile. "')";
                     mysqli_query($conn, $query) or die('Error, insert query failed');
 
                 }else{

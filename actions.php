@@ -56,6 +56,11 @@
         }
     }
 
+    if($_POST['code'] == 6){
+        $query = "DELETE FROM Book WHERE bookID= '".$_POST['id']."'";
+        mysqli_query($conn, $query);
+    }
+
 /*if(mysqli_query($conn, $query)){
         echo "updated";
     }else{
