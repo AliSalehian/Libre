@@ -95,7 +95,7 @@ $day=date("d",$time);
 
     <div id="pageTitle"><?php echo $r['BookName'] ?></div>
     <div id="searchPlace">
-        <form>
+        <form method="post" action="result.php">
             <div id="searchIcon"></div>
             <input id="search" type="text" name="search" placeholder="Search books, authors">
         </form>

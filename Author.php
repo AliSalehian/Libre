@@ -104,7 +104,7 @@ $rows = $this_page_first_result;
 <div class="page">
     <div id="pageTitle">Author</div>
     <div id="searchPlace">
-        <form>
+        <form method="post" action="result.php">
             <div id="searchIcon"></div>
             <input id="search" type="text" name="search" placeholder="Search books, authors">
         </form>
@@ -149,7 +149,7 @@ $rows = $this_page_first_result;
                     echo "<td>".++$rows."</td>";
                     echo "<td>".$row['AuthorName']."</td>";
                     echo "<td>".$row['Reg Date']."</td>";
-                    echo "<td><a href='author.php?page='".$_GET['page']." id='".$row['id']."' class='edit'>Edit</a></td>";
+                    echo "<td><a id='".$row['id']."' class='edit'>Edit</a></td>";
                     echo "</tr>";
                 }
             ?>

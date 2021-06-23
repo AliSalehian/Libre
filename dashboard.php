@@ -59,7 +59,7 @@ $issueBooks = findInQueryWithWhere("i.issueID", "IssueDetails i", "i.issueStatus
 
     <div id="pageTitle">Admin Dashboard</div>
     <div id="searchPlace">
-        <form>
+        <form method="post" action="result.php">
             <div id="searchIcon"></div>
             <input id="search" type="text" name="search" placeholder="Search books, authors">
         </form>

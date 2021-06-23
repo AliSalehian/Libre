@@ -2,6 +2,7 @@
 session_start();
 include ("connection.php");
 include("NotLoggedIn.php");
+include ("search.php");
 
 echo $_POST['boookid'];
 
@@ -82,7 +83,7 @@ $result = mysqli_query($conn, $query);
 
     <div id="pageTitle">Books</div>
     <div id="searchPlace">
-        <form>
+        <form method="post" action="result.php">
             <div id="searchIcon"></div>
             <input id="search" type="text" name="search" placeholder="Search books, authors">
         </form>
@@ -93,6 +94,7 @@ $result = mysqli_query($conn, $query);
         <?php
 
             while($i = mysqli_fetch_array($result)){
+
                 echo '<div class="bookPlace" id = "'.$i['bookID'].'">';
                 echo '<img class="bookImgPlace" src="data:image/jpeg;base64,'.base64_encode( $i['img'] ).'"/>';
                 echo '<h2>'.$i['BookName'].'</h2>';

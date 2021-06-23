@@ -2,22 +2,15 @@
 session_start();
 include ("connection.php");
 include("NotLoggedIn.php");
+include ("search.php");
 
-
+echo $_POST['boookid'];
 $id = $_SESSION['id'];
-$bookID = $_GET['id'];
-
 $query = "SELECT * FROM Student WHERE id = '".$id."'";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_array($result);
 
 
-$query = "SELECT * 
-FROM Book b 
-WHERE bookID ='".$bookID."'
-LIMIT 1";
-    $result = mysqli_query($conn, $query);
-    $r= mysqli_fetch_array($result);
 ?>
 
 
@@ -60,24 +53,62 @@ LIMIT 1";
         ?>
         <li class="floatLeft selected"><a href="studentDashboard.php?page=1">Books</a></li>
         <li class="floatLeft"><a href="studentIssueBook.php?page=1">Issue Books</a></li>
-        <li class="floatLeft studentProfile"><a href="studentProfile.php"></a></li>
+        <li class="floatLeft studentProfile">
+            <?php
+            if(is_null($row['profileImg'])) {
+                echo '<img class="profileImgNo" src="img/user.png"/>';
+            }
+            else {
+                echo '<img class="profileImg" src="data:image/jpeg;base64,' . base64_encode($row['profileImg']) . '"/>';
+            }
+            ?>
+        </li>
         <li class="floatLeft" id="button"><a href="index.php?logout=1">Logout</a></li>
     </ul>
 </div>
 
 <div class="page">
 
-    <div id="pageTitle"><?php echo $r['BookName'] ?></div>
+    <div id="pageTitle">Books</div>
     <div id="searchPlace">
         <form method="post" action="result.php">
             <div id="searchIcon"></div>
-            <input id="search" type="text" name="search" placeholder="Search books, authors">
+            <input id="search" type="text" name="search" placeholder="Search books, authors" value="<?php if(isset($req)) echo $req?>">
         </form>
     </div>
     <div class="clear"></div>
-    <div class="pdfContainer" style="padding: 30px">
-        <?php echo '<embed src="data:application/pdf;base64,'.base64_encode( $r['summaryPDF'] ).'" width="100%" height="1000px"/>'; ?>
+
+    <div class="bookList">
+        <?php
+        if($numResults){
+            while($i = mysqli_fetch_array($result1)){
+                echo '<div class="bookPlace" id = "'.$i['bookID'].'">';
+                echo '<img class="bookImgPlace" src="data:image/jpeg;base64,'.base64_encode( $i['img'] ).'"/>';
+                echo '<h2>'.$i['BookName'].'</h2>';
+                echo '<div class="authorPlace">';
+                echo '<img class="poet" src="img/poet.png">';
+                echo '<h3 class="authorName">'.$i['AuthorName'].'</h3>';
+                echo '</div>';
+                echo '<div class="clear"></div>';
+                if($i['issueStatus'] == 1)  echo '<h3 class="issued">Issued</h3>';
+                else if($i['issueStatus'] == 2) echo '<h3 class="reserved">Reserved</h3>';
+                else echo '<h3 class="available">Available</h3>';
+                echo '</div>';
+            }
+        }
+        ?>
+
     </div>
+    <?php
+        if(!$numResults){
+            echo '<div class="errorpage" style="position:relative; bottom: 70px; background-color: transparent">';
+            echo '<img class="Error404" src="Img/404-error.png">';
+            echo '<p>We could not find anything. Please try again!</p>';
+            echo '<a href="studentDashboard.php">Back to home page</a>';
+            echo '</div>';
+        }
+    ?>
+
 
 </div>
 <!--<div id="bottom">

@@ -99,7 +99,7 @@ $rows = $this_page_first_result;
 <div class="page">
     <div id="pageTitle">Issue Books</div>
     <div id="searchPlace">
-        <form>
+        <form method="post" action="result.php">
             <div id="searchIcon"></div>
             <input id="search" type="text" name="search" placeholder="Search books, authors">
         </form>

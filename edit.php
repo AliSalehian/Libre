@@ -2,8 +2,6 @@
 
 include ("connection.php");
 if(isset($_POST['submitEditAuthor'])){
-    print_r($_POST['editAuthor']);
-    print_r($_POST['AuthorId']);
     if(!$_POST['editAuthor']){
         echo "The author name field is empty";
     }else{
@@ -23,7 +21,6 @@ if(isset($_POST['submitEditCategory'])){
 
         //header("Location: category.php?page=1");
     }
-
 }
 $editBookError = "";
 if(isset($_POST['submitEditBook'])) {

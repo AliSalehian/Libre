@@ -17,47 +17,11 @@
 </head>
 <body>
 
-    <!--<form method="post">
-        <label for="fullName">Full Name</label>
-        <input name="fullName" placeholder="Full Name" type="text">
-        <br>
-        <br>
-        <label for="signupEmail">Email</label>
-        <input name="signupEmail" placeholder="Email" type="email">
-        <br>
-        <br>
-        <label for="signupPhone">Phone Number</label>
-        <input name="signupPhone" placeholder="Phone Numbers" type="text">
-        <br>
-        <br>
-        <label for="signupPassword">Password</label>
-        <input name="signupPassword" placeholder="Password" type="password">
-        <br>
-        <br>
-
-        <input name="submit" type="submit" value="Sign Up">
-    </form>
-
-    <hr>
-
-    <form method="post">
-
-        <label for="signinEmail">Email</label>
-        <input name="signinEmail" placeholder="Email" type="email">
-
-        <label for="signinPassword">Password</label>
-        <input name="signinPassword" placeholder="Password" type="password">
-        <br>
-        <br>
-
-        <input name="loginSubmit" type="submit" value="Sign In">
-    </form>
--->
 
 <div id="indexMenu">
     <div class="nav">
-        <a class="register">Register</a>
-        <a href="">About Us</a>
+        <a class="register" style="text-decoration: underline">Register</a>
+        <a href="about.php">About Us</a>
         <a href="">Contact Us</a>
     </div>
 </div>
@@ -92,7 +56,7 @@
 
     <div class="signUpPlace">
         <div class="loginRightSec">
-            <p class="loginTitle" style="margin-top: 50px">Sign in to Liber</p>
+            <p class="loginTitle top" style="margin-top: 50px">Sign in to Liber</p>
             <form method="post">
                 <img style="width: 22px" class="loginIconImg" src="img/id-card.png"><br>
                 <input class="loginInputs" name="fullName" placeholder="Full Name" type="text">
