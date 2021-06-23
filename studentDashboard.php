@@ -4,7 +4,7 @@ include ("connection.php");
 include("NotLoggedIn.php");
 include ("search.php");
 
-echo $_POST['boookid'];
+//echo $_POST['boookid'];
 
 
 $id = $_SESSION['id'];

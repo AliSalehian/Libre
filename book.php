@@ -202,7 +202,7 @@ $categoryResultEdit = mysqli_query($conn, $categoryQuery);
                     echo "<td>".$row['BookName']."</td>";
                     echo "<td>".$row['AuthorName']."</td>";
                     echo "<td>".$row['CategoryName']."</td>";
-                    echo "<td>£".$row['BookPrice']."</td>";
+                    echo "<td>".$row['BookPrice']."</td>";
                     echo "<td>".$row['BookISBN']."</td>";
                     echo "<td>".$row['Reg Date']."</td>";
                     echo "<td><a id='".$row['bookID']."' class='edit BookPage'>Edit</a><a id='".$row['bookID']."' class='removeBook'>Remove</a></td>";

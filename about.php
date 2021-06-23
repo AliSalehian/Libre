@@ -32,7 +32,7 @@
         <p class="MemName">Ali<span>Salehian</span></p>
         <p class="jobDesc">mysql Desin-Imp Specialist</p>
         <div class="links">
-            <i class="fa fa-instagram"></i>
+            <a href="https://www.instagram.com/ali_ss_h/" target="_blank"><i class="fa fa-instagram"></i></a>
             <i style="font-size: 100%; margin-left: 20px" class="far fa-envelope-open"></i>
         </div>
     </div>

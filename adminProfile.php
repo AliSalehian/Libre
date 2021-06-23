@@ -56,7 +56,7 @@ $row = mysqli_fetch_array($result);
         </form>
     </div>
 </div>
-<p><?php echo $errorU ?></p>
+<!--<p>--><?php //echo $errorU ?><!--</p>-->
 <div id="Menu">
     <p id="name">LIBRE</p>
     <ul>
